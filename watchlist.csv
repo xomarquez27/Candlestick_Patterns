@@ -1,0 +1,212 @@
+AAPL,NASDAQ,Apple Inc
+ABBV,NYSE,Abbvie Inc
+ABMD,NASDAQ,Abiomed Inc
+ABUS,NASDAQ,Arbutus Biopharma Cp
+ADBE,NASDAQ,Adobe Systems Inc
+ADP,NASDAQ,Automated Data Processing Inc
+ADSK,NASDAQ,Autodesk Inc
+ALB,NYSE,Albemarle Corp
+AMAT,NASDAQ,Applied Materials
+AMD,NASDAQ,Adv Micro Devices
+AMGN,NASDAQ,Amgen Inc
+AMTD,NASDAQ,TD Ameritrade HD
+AMZN,NASDAQ,Amazon.com Inc
+ANET,NYSE,Arista Networks Inc
+AQN,NYSE,Algonquin Power & Utilities Co
+ATVI,NASDAQ,Activision Blizzard
+AVGO,NASDAQ,Broadcom Ltd
+AXP,NYSE,American Express Company
+AXSM,NASDAQ,Axsome Therapeutics Inc Com
+AYX,NYSE,Alteryx Inc
+AZN,NYSE,Astrazeneca ADR
+AZO,NYSE,Autozone Inc
+BA,NYSE,Boeing Company
+BABA,NYSE,Alibaba Group Holding
+BAC,NYSE,Bank of America Corp
+BBY,NYSE,Best Buy Company
+BIDU,NASDAQ,Baidu Inc
+BIIB,NASDAQ,Biogen Inc
+BKNG,NASDAQ,Booking Holdings Inc
+BLK,NYSE,Blackrock Inc
+BMRN,NASDAQ,Biomarin Pharmaceuticals
+BMY,NYSE,Bristol-Myers Squibb Company
+BUD,NYSE,Anheuser-Busch Inbev S.A. ADR
+BURL,NYSE,Burlington Stores Inc
+BYND,NASDAQ,Beyond Meat Inc
+C,NYSE,Citigroup Inc
+CAH,NYSE,Cardinal Health
+CAT,NYSE,Caterpillar Inc
+CHWY,NYSE,Chewy Inc
+CI,NYSE,Cigna Corp
+CLDR,NYSE,Cloudera Inc
+CLVS,NASDAQ,Clovis Oncology Inc
+CMG,NYSE,Chipotle Mexican Grill
+CMI,NYSE,Cummins Inc
+COF,NYSE,Capital One Financial Corp
+COMP,INDEX,NASDAQ
+COP,NYSE,ConocoPhillips Com
+COST,NASDAQ,Costco Wholesale
+CRWD,NASDAQ,Crowdstrike Holdings Inc
+CSCO,NASDAQ,Cisco Systems Inc
+CVNA,NYSE,Carvana Co. Cl A
+CVS,NYSE,CVS Corp
+CVX,NYSE,Chevron Corp
+DAL,NYSE,Delta Air Lines Inc
+DDOG,NASDAQ,Datadog Inc Cl A
+DFS,NYSE,Discovery Financial Services
+DIA,AMEX,Dow Industrials SPDR
+DIN,NYSE,Dinequity Inc
+DIS,NYSE,Walt Disney Company
+DJI,INDEX,DOW JONES
+DLTR,NASDAQ,Dollar Tree Inc
+DNKN,NASDAQ,Dunkin’ Brands Group
+DNLI,NASDAQ,Denali Therapeutics Inc
+DOCU,NASDAQ,Docusign Inc
+DOW,NYSE,Dow Inc
+DPZ,NYSE,Domino’s Pizza Inc
+EA,NASDAQ,Electronic Arts Inc
+EBAY,NASDAQ,Ebay Inc
+EL,NYSE,Estee Lauder Companies
+ETSY,NASDAQ,Etsy Inc
+EXEL,NASDAQ,Exelixis Inc
+FB,NASDAQ,Facebook Inc
+FDX,NYSE,Fedex Corp
+FLT,NYSE,Fleetcor Technologies
+FND,NYSE,Floor & Decor Holdings Inc
+GH,NASDAQ,Guardant Health Inc
+GILD,NASDAQ,Gilead Sciences Inc
+GLD,AMEX,Gold SPDR
+GME,NYSE,Gamestop Corp
+GO,NASDAQ,Grocery Outlet Holding Corp
+GOOG,NASDAQ,Alphabet Cl C
+GOOGL,NASDAQ,Alphabet Cl A
+GS,NYSE,Goldman Sachs Group
+HAS,NASDAQ,Hasbro Inc
+HD,NYSE,Home Depot Inc
+HLT,NYSE,Hilton Inc
+HUBS,NYSE,Hubspot Inc
+IBM,NYSE,International Business Machines Corp
+ICPT,NASDAQ,Intercept Pharmaceuticals
+INTC,NASDAQ,Intel Corp
+INTU,NASDAQ,Intuit Inc
+IOVA,NASDAQ,Iovance Biotherapeutics Inc
+ISRG,NASDAQ,Intuitive Surg Inc
+JCOM,NASDAQ,J2 Global Inc
+JNJ,NYSE,Johnson & Johnson
+JPM,NYSE,JP Morgan Chase & Company
+K,NYSE,Kellogg Company
+KMX,NYSE,Carmax Inc
+KO,NYSE,Coca Cola Company
+LEVI,NYSE,Levi Strauss & Co Cl A
+LH,NYSE,Laboratory Corp of America Holdings
+LMT,NYSE,Lockheed Martin Corp
+LOW,NYSE,Lowe’s Companies
+LRCX,NASDAQ,Lam Research Corp
+LULU,NASDAQ,Lululemon Athletica
+LUV,NYSE,Southwest Airlines Company
+LVS,NYSE,Las Vegas Sands
+LYFT,NASDAQ,Lyft Inc Cl A
+M,NYSE,Macy’s Inc
+MA,NYSE,Mastercard Inc
+MAR,NASDAQ,Marriot Int Cl A
+MCD,NYSE,McDonald’s Corp
+MCHP,NASDAQ,Microchip Technology
+MCK,NYSE,Mckesson Corp
+MDB,NASDAQ,Mongodb Inc Cl A
+MDC,NYSE,M.D.C. Holdings
+MELI,NASDAQ,Mercado Libre Inc
+MGM,NYSE,MGM Resorts International
+MHK,NYSE,Mohawk Industries Inc
+MKC,NYSE,Mccormick & Company Inc
+MMM,NYSE,3M Company
+MNST,NASDAQ,Monster Beverage Corp
+MRK,NYSE,Merck & Company
+MRVL,NASDAQ,Marvell Tech Group
+MS,NYSE,Morgan Stanley
+MSFT,NASDAQ,Microsoft Corp
+MTCH,NASDAQ,Match Group Inc
+MU,NASDAQ,Micron Technology
+NFLX,NASDAQ,Netflix Inc
+NIO,NYSE,Nio Inc
+NKE,NYSE,Nike Inc
+NOC,NYSE,Northrop Grumman Corp
+NOW,NYSE,Servicenow Inc
+NTAP,NASDAQ,Netapp Inc
+NVDA,NASDAQ,Nvidia Corp
+NVS,NYSE,Novartis Ag
+OKTA,NASDAQ,Okta Inc Cl A
+ON,NASDAQ,On Semiconductor
+ORLY,NASDAQ,O’Reilly Automotive
+PEP,NASDAQ,Pepsico Inc
+PFE,NYSE,Pfizer Inc
+PG,NYSE,Procter & Gamble Company
+PINS,NYSE,Pinterest Inc
+PLNT,NYSE,Planet Fitness
+PM,NYSE,Phillip Morris International Inc
+PRVB,NASDAQ,Provention Bio Inc
+PTON,NASDAQ,Peloton Interactive Inc
+PYPL,NASDAQ,Paypal Holdings
+QCOM,NASDAQ,Qualcomm Inc
+QQQ,NASDAQ,Nasdaq QQQ Invesco ETF
+RACE,NYSE,Ferrari N.V.
+RCL,NYSE,Royal Caribbean Cruises Ltd
+REGN,NASDAQ,Regeneron Pharmaceuticals
+RH,NYSE,Restoration Hardware Holdings
+RL,NYSE,Ralph Lauren Corp
+RNG,NYSE,Ringcentral Inc
+ROKU,NASDAQ,Roku Inc
+RTX,NYSE,Raytheon Technologies Corp
+RVLV,NYSE,Revolve Group Inc
+SAM,NYSE,Boston Beer Company
+SBUX,NASDAQ,Starbucks Corp
+SCHW,NYSE,The Charles Schwab Corp
+SE,NYSE,Sea Ltd ADR
+SHAK,NYSE,Shake Shack Inc
+SHOP,NYSE,Shopify Inc
+SKYW,NASDAQ,Skywest Inc
+SLV,AMEX,SLV Ishares
+SNAP,NYSE,Snap Inc
+SNE,NYSE,Sony Corp
+SNPS,NASDAQ,Synopsys Inc
+SPCE,NYSE,Virgin Galactic Holdings Inc
+SPOT,NYSE,Spotify Technology S.A.
+SPX,INDEX,S&P 500 Index
+SPY,AMEX,S&P 500 SPDR
+SQ,NYSE,Square
+SYF,NYSE,Synchrony Financial
+TDOC,NYSE,Teladoc Health Inc
+TEAM,NASDAQ,Atlassian Cls A Ord
+TEVA,NYSE,Teva Pharmaceutical Industries Ltd
+TGT,NYSE,Target Corp
+TJX,NYSE,TJX Companies
+TREE,NASDAQ,Lendingtree Inc
+TRV,NYSE,The Travelers Companies Inc
+TSLA,NASDAQ,Tesla Inc
+TSN,NYSE,Tyson Foods
+TTD,NASDAQ,Trade Desk Inc
+TWLO,NYSE,Twilio
+TWTR,NYSE,Twitter Inc
+UAL,NASDAQ,United Continental Holdings
+UBER,NYSE,Uber Technologies Inc
+ULTA,NASDAQ,Ulta Beauty Inc
+UNH,NYSE,Unitedhealth Group Inc
+UPS,NYSE,United Parcel Service
+V,NYSE,Visa Inc
+VIX,INDEX,CBOE Volatility Index
+VMW,NYSE,Vmware Inc
+VRNS,NASDAQ,Varonis Systems Inc
+VXX,AMEX,Ipath.B S&P 500 VIX Short-Term Futures
+VZ,NYSE,Verizon Communications Inc
+W,NYSE,Wayfair Inc
+WBA,NASDAQ,Walgreens Boots Alliance
+WDAY,NASDAQ,Workday Inc
+WDC,NASDAQ,Western Digital Corp
+WEN,NASDAQ,Wendy’s Company
+WMT,NYSE,Wal-Mart Stores
+WORK,NYSE,Slack Technologies Inc
+WYNN,NASDAQ,Wynn Resorts Ltd
+XOM,NYSE,Exxon Mobil Corp
+XPO,NYSE,XPO Logistics Inc
+YUM,NYSE,Yum! Brands
+ZM,NASDAQ,Zoom Video Communications Cl A
+ZTS,NYSE,Zoetis Inc Cl A
