@@ -1,5 +1,5 @@
 import requests, csv, datetime
-from config.py import client_id
+from config import client_id
 
 # This is your api key
 key = client_id

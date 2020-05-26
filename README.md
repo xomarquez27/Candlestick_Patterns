@@ -64,7 +64,7 @@ validate.sh file creates missing_days.txt in which one can see which stocks were
 
 ### Notes
 This project was lots of fun to create since it is a very interesting subject to me and I am very passionate about the world of trading.
-The findings of this project are tweeted out every day this includes, the daily finding on over 200 stocks (at the time of this writing) as well as the morning gappers, you can follow the account @dailycandlestix.
+The findings of this project are tweeted out every day this includes, the daily finding on over 200 stocks (at the time of this writing) as well as the morning gappers, you can follow the account [@dailycandlestix](twitter.com/dailycandlestix).
 
 ### Authors
 * Xavier Otero Marquez
