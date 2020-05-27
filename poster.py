@@ -42,12 +42,12 @@ if __name__ == '__main__':
 			data['Date'] = data['Date'].dt.date
 			
 			# Indicates if stock closed higher than day's open, not previous close.
-			data['Day Close'] = np.where(data['Close'] > data['Open'],
-																	'Up', 'Down')
+			data['Day Close'] = np.where(data['Close'] > data['Open'], 'Up', 'Down')
+			
+
 			# Find hammer candlestick if open - low > (close - open) * 2 
 			# if the hammer's shadow is at least 2 times greater than the size of the real body
-			data['Hammer'] = np.where(data['Day Close'] == 'Up', data['Open'] - data['Low'] >= ((data['High'] -
-																data['Open']) * 2), False)
+			data['Hammer'] = np.where(data['Day Close'] == 'Up', data['Open'] - data['Low'] >= ((data['High'] - data['Open']) * 2), False)
 
 			data['Inverted Hammer'] = np.where(data['Day Close'] == 'Up', data['High'] - data['Close'] >= ((data['Close'] 
 																				 - data['Low']) * 2), False)
@@ -78,15 +78,17 @@ if __name__ == '__main__':
                                                 (data['Open'].shift(-1) > data['Open'].shift(-2)) & 
                                                 (data['Open'].shift(-1) < data['Close'].shift(-2)), True, False)
 
-			data['Morning Star'] = np.where((data['Day Close'] == 'Up') & 
-															(data['Day Close'].shift(-2) == 'Down') & 
+			data['Morning Star'] = np.where((data['Day Close'] == 'Up') & (data['Day Close'].shift(-2) == 'Down') & 
 															(data['Day Close'].shift(-1) == 'Up') & 
 															(data['Close'].shift(-1) < data['Close'].shift(-2)) &
 															(data['Open'] > data['Close'].shift(-2)) &
 															(data['Close'] > data['Close'].shift(-2)), True, False)
-
-			data['Minor Breakout'] = data['Open'].gt(data['High'][::-1].shift().rolling(20).max())
-			data['Major Breakout'] = data['Open'].gt(data['High'][::-1].shift().rolling(50).max())
+            
+      # Open is higher than any of the previous 20 highs and it closes above the previous close
+			data['Minor Breakout'] = data['Open'].gt(data['High'][::-1].shift().rolling(20).max()) & (data['Close'] > data['Close'].shift(-1))
+            
+      # Open is higher than any of the previous 50 highs and it closes above the previous close
+			data['Major Breakout'] = data['Open'].gt(data['High'][::-1].shift().rolling(50).max()) & (data['Close'] > data['Close'].shift(-1))
 
 			data['Bull Flagpole'] = np.where((data['Day Close'] == 'Up') &
                                 ((data['Close'] - data['Open']) >= (((((data['High'].shift(-1) - data['Low'].shift(-1)) +
@@ -94,7 +96,10 @@ if __name__ == '__main__':
                                 (data['High'].shift(-3) - data['Low'].shift(-3)))) / 3) * 2.5)) &
                                 (data['Open'] >= data['Low'].shift(-1)), True, False)
 
+      # Close is lower than any of the previous 20 lows
 			data['Minor Breakdown'] = data['Close'].lt(data['Low'][::-1].shift().rolling(20).min())
+            
+      # Close is lower than any of the previous 50 lows
 			data['Major Breakdown'] = data['Close'].lt(data['Low'][::-1].shift().rolling(50).min())
 
 			data['Bear Flagpole'] = np.where((data['Day Close'] == 'Down') & 
@@ -158,8 +163,7 @@ if __name__ == '__main__':
                                     data['Open'].shift(-1)) * .5) + data['Open'].shift(-1))) & (data['Close'] < data['Close'].shift(-1)), True, False)
 
 			data['Three Black Crows'] = np.where((data['Day Close'] == 'Down') & (data['Open'] > data['Close'].shift(-1)) &
-												(data['Open'] < data['Open'].shift(-1)) & (data['Day Close'].shift(-1) == 'Down') &
-												(data['Close'] < data['Close'].shift(-1)) & (data['Day Close'].shift(-1) == 'Down') &
+												(data['Open'] < data['Open'].shift(-1)) & (data['Day Close'].shift(-1) == 'Down') &												(data['Close'] < data['Close'].shift(-1)) & (data['Day Close'].shift(-1) == 'Down') &
 												(data['Open'].shift(-1) > data['Close'].shift(-2)) & (data['Open'].shift(-1) < data['Open'].shift(-2)) &
 												(data['Day Close'].shift(-2) == 'Down') & (data['Close'].shift(-1) < data['Close'].shift(-2)), True, False)
 
@@ -178,28 +182,34 @@ if __name__ == '__main__':
 				for i in day_pattern:
 					content.append(f'${file.split(".csv")[0]} {i} Pattern \n')
 					content.append(f'Daily appearances since {data.iloc[-1,0]}: {data[i].sum()}\n')
+
+					# Dataframe with all days in which the pattern is True
 					performance = pd.DataFrame(data.loc[data[i] == True])
 
-					performance['Three Days'] = data.shift(3)[data[i] == True]['Close']
-					performance['Result'] =  performance['Three Days'] - performance['Close']
-					content.append(f"Performance (Close) 3 days later \u00B1:\n")
-					content.append(f"Avg: {performance['Result'].mean():.2f}\n")
-					content.append(f"Worst: {performance['Result'].min():.2f}\n")
-					content.append(f"Best: {performance['Result'].max():.2f} \n\n")
-
+					# Grab the close from 5 days after a pattern occurs and make result be the difference in price
+					# from the close of the day of the pattern and that close 5 days after the pattern
 					performance['Five Days'] = data.shift(5)[data[i] == True]['Close']
 					performance['Result'] =  performance['Five Days'] - performance['Close']
-					content.append(f"5 days later:\n")
+					content.append(f"Performance (Close) 5 days later \u00B1:\n")
 					content.append(f"Avg: {performance['Result'].mean():.2f}\n")
 					content.append(f"Worst: {performance['Result'].min():.2f}\n")
 					content.append(f"Best: {performance['Result'].max():.2f} \n\n")
 
+					# Same concept as above but using 10 days after
 					performance['Ten Days'] = data.shift(10)[data[i] == True]['Close']
 					performance['Result'] = performance['Ten Days'] - performance['Close']
 					content.append(f"10 days later:\n")
 					content.append(f"Avg: {performance['Result'].mean():.2f}\n")
 					content.append(f"Worst: {performance['Result'].min():.2f}\n")
-					content.append(f"Best: {performance['Result'].max():.2f} \n")
+					content.append(f"Best: {performance['Result'].max():.2f} \n\n")
+
+					performance['30 Days'] = data.shift(30)[data[i] == True]['Close']
+					performance['Result'] =  performance['30 Days'] - performance['Close']
+					content.append(f"30 days later:\n")
+					content.append(f"Avg: {performance['Result'].mean():.2f}\n")
+					content.append(f"Worst: {performance['Result'].min():.2f}\n")
+					content.append(f"Best: {performance['Result'].max():.2f}\n")
+
 					# print("".join(content))
 					twitter.update_status("".join(content))
 					content.clear()
