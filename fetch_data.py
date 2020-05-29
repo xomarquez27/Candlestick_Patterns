@@ -17,7 +17,7 @@ def get_quotes(**kwargs):
 
 
 # The following tickers (keys) can only be found on the TD Ameritrade API under the respective (values).
-replacements = {'DJI': '$DJI', 'COMP': '$NDX.X', 'SPX': '$SPX.X', 'VIX': '$VIX.X'}
+replacements = {'DJI': '$DJI', 'SPX': '$SPX.X', 'VIX': '$VIX.X'}
 
 # Read stocks to update from file
 with open('stocks.txt', newline='') as f:
@@ -46,7 +46,7 @@ with open('eod.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(['Symbol', 'Date', 'Open', 'High', 'Low', 'Close', 'Volume'])
     for ticker in close_data:
-        if ticker in ['$DJI', '$NDX.X', '$SPX.X', '$VIX.X']:
+        if ticker in ['$DJI', '$SPX.X', '$VIX.X']:
             writer.writerow([close_data[ticker]['symbol'], today, close_data[ticker]['openPrice'],
                                         close_data[ticker]['highPrice'], close_data[ticker]['lowPrice'],
                                         close_data[ticker]['lastPrice'], '0'])
