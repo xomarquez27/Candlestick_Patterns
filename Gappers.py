@@ -4,6 +4,7 @@
 import pandas as pd
 import datetime, time, json, requests, tweepy
 from config import client_id
+from os import listdir
 
 
 with open('token.txt', 'r') as json_file:
@@ -75,8 +76,27 @@ for chunk in chunks(stocks, 15):
     close_data.update(data)
 
 
-df = pd.DataFrame.from_dict(close_data, orient='index', columns=['symbol', 'openPrice', 'closePrice'])
+df = pd.DataFrame.from_dict(close_data, orient='index', columns=['symbol', 'openPrice', 'closePrice', '52WkHigh'])
 df['Pct Change'] = (df['openPrice'] / df['closePrice']) - 1
+
+file_location = 'stock_data/'
+
+stock_20_day_high = {}
+stock_50_day_high = {}
+stock_100_day_high = {}
+
+for file in listdir('./stock_data/'):
+    if file.endswith('.csv'):
+        data = pd.read_csv(file_location + file, parse_dates=[0])
+        data = data.iloc[::-1]
+        data = data.iloc[:100]
+        stock_20_day_high[file.split(".csv")[0]] = data[:20]['High'].max()
+        stock_50_day_high[file.split(".csv")[0]] = data[:50]['High'].max()
+        stock_100_day_high[file.split(".csv")[0]] = data['High'].max()
+
+df['20 Day High'] = df['symbol'].map(stock_20_day_high)
+df['50 Day High'] = df['symbol'].map(stock_50_day_high)
+df['100 Day High'] = df['symbol'].map(stock_100_day_high)
 
 
 def twitter_auth():
@@ -100,7 +120,7 @@ twitter = twitter_auth()
 
 
 content = []
-content.append("Stocks gapping:\n")
+content.append("Morning gaps:\n")
 char_count = len(content[0])
 for t in df[['symbol', 'Pct Change']].values:
     if abs(t[1]) > .025:
@@ -111,4 +131,29 @@ for t in df[['symbol', 'Pct Change']].values:
                 twitter.update_status("".join(content))
                 content.clear()
                 char_count = 0
+                content.append("Morning gaps:\n")
+twitter.update_status("".join(content))
+
+
+# Breakout alerts
+content.clear()
+char_count = 0
+
+for t in df[['symbol', 'openPrice', '20 Day High', '50 Day High', '100 Day High', '52WkHigh']].values:
+    if t[1] > t[2]:
+        if (t[1] > t[3]) and (t[1] < t[4]):
+            line = f'${t[0]} Breakout alert: Open > 50D high \n'
+        elif t[1] > t[4]:
+            line = f'${t[0]} Breakout alert: Open > 100D high \n'
+        elif t[1] > t[5]:
+            line = f'${t[0]} Breakout alert: New 52 Wk high! \n'
+        else:
+            line = f'${t[0]} Breakout alert: Open > 20D high \n'
+        # Count characters
+        char_count += len(line)
+        content.append(line)
+        if char_count > 240:
+            twitter.update_status("".join(content))
+            content.clear()
+            char_count = 0
 twitter.update_status("".join(content))
