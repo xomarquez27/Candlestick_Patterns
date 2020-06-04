@@ -141,18 +141,18 @@ char_count = 0
 
 for t in df[['symbol', 'openPrice', '20 Day High', '50 Day High', '100 Day High', '52WkHigh']].values:
     if t[1] > t[2]:
-        if (t[1] > t[3]) and (t[1] < t[4]):
-            line = f'${t[0]} Breakout alert: Open > 50D high \n'
+        if t[1] > t[5]:
+            line = f'${t[0]} New 52 Wk high!\n'
         elif t[1] > t[4]:
-            line = f'${t[0]} Breakout alert: Open > 100D high \n'
-        elif t[1] > t[5]:
-            line = f'${t[0]} Breakout alert: New 52 Wk high! \n'
+                line = f'${t[0]} Alert: Open > 100 day high\n'
+        elif t[1] > t[3]:
+            line = f'${t[0]} Alert: Open > 50 day high\n'
         else:
-            line = f'${t[0]} Breakout alert: Open > 20D high \n'
+            line = f'${t[0]} Alert: Open > 20 day high\n'
         # Count characters
         char_count += len(line)
         content.append(line)
-        if char_count > 240:
+        if char_count > 242:
             twitter.update_status("".join(content))
             content.clear()
             char_count = 0
