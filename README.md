@@ -14,7 +14,14 @@ This project currently uses the TD Ameritrade API to get the stocks daily end of
 This project was developed on a Linux system, therefore it also works on Mac OS. There are a bunch of bash scripts which are the launching points of most of the program's functionalities, and work on schedule via crontab. The bash scripts can be translated to Windows by using the equivalent Powershell, and Task Scheduler. I do not provide these equivalents and you must make them yourself if using Windows. As an alternative, you could use the [Windows Susbsystem for Linux.](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 
 ### APIs
-This program uses both the TD Ameritrade and Twitter APIs, the Twitter API is not necessary unless you are tweeting out your findings, but the TD Ameritrade API is needed to get the daily close data unless you are using the FTP method via eoddata.com. To use the TD Ameritrade API, you must create or have an account with them.
+This program uses both the TD Ameritrade and Twitter APIs, the Twitter API is not necessary unless you are tweeting out your findings, but the TD Ameritrade API is needed to get the daily close data unless you are using the FTP method via eoddata.com. To use the TD Ameritrade API, you must create or have an account with them. For the Twitter API, you will need the tweepy.json file referenced on several scripts on your project directory. This file should contain your consumer key, secret and access key and secret in the following format:
+
+>{
+	"consumer_key": "randomstring"
+	"consumer_secret": "randomstring"
+	"access_key": "randomstring"
+	"access_secret": "randomstring"
+>}
 
 ### Libraries
 The program uses bash and Python 3.7 to do most of its functionalities, because of several Python libraries not being part of the standard library, there are a few imports that take place on basically all of the Python scripts, these are:
