@@ -129,12 +129,10 @@ for t in df[['symbol', 'Pct Change']].values:
             char_count += len(line)
             if char_count >= 253:
                 twitter.update_status("".join(content))
-                # print("".join(content))
                 content.clear()
                 char_count = 0
                 content.append("Stock gaps:\n")
 twitter.update_status("".join(content))
-# print("".join(content))
 
 
 # Breakout alerts
@@ -156,9 +154,7 @@ for t in df[['symbol', 'openPrice', '20 Day High', '50 Day High', '100 Day High'
         content.append(line)
         if char_count > 242:
             twitter.update_status("".join(content))
-#             print("".join(content))
             content.clear()
             char_count = 0
 if content:
     twitter.update_status("".join(content))
-#   print("".join(content))
