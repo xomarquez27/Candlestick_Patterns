@@ -120,19 +120,21 @@ twitter = twitter_auth()
 
 
 content = []
-content.append("Morning gaps:\n")
+content.append("Stock gaps:\n")
 char_count = len(content[0])
 for t in df[['symbol', 'Pct Change']].values:
     if abs(t[1]) > .025:
             line = f"${t[0]} {t[1]:,.2%}\n"
             content.append(line)
             char_count += len(line)
-            if char_count >= 265:
+            if char_count >= 253:
                 twitter.update_status("".join(content))
+                # print("".join(content))
                 content.clear()
                 char_count = 0
-                content.append("Morning gaps:\n")
+                content.append("Stock gaps:\n")
 twitter.update_status("".join(content))
+# print("".join(content))
 
 
 # Breakout alerts
@@ -154,6 +156,9 @@ for t in df[['symbol', 'openPrice', '20 Day High', '50 Day High', '100 Day High'
         content.append(line)
         if char_count > 242:
             twitter.update_status("".join(content))
+#             print("".join(content))
             content.clear()
             char_count = 0
-twitter.update_status("".join(content))
+if content:
+    twitter.update_status("".join(content))
+#   print("".join(content))
