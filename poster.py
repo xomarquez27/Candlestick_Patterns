@@ -74,10 +74,10 @@ if __name__ == '__main__':
                                             (data['Close'] > data['Close'].shift(-2)), True, False)
             
       # Open is higher than any of the previous 20 highs and it closes above the previous close
-            data['Minor Breakout'] = data['Open'].gt(data['High'][::-1].shift().rolling(20).max()) & (data['Close'] > data['Close'].shift(-1))
+            data['Minor Breakout'] = data['Open'].gt(data['High'][::-1].shift().rolling(20).max()) & (data['Close'] > data['High'].shift(-1))
             
       # Open is higher than any of the previous 50 highs and it closes above the previous close
-            data['Major Breakout'] = data['Open'].gt(data['High'][::-1].shift().rolling(50).max()) & (data['Close'] > data['Close'].shift(-1))
+            data['Major Breakout'] = data['Open'].gt(data['High'][::-1].shift().rolling(50).max()) & (data['Close'] > data['High'].shift(-1))
 
             data['Bull Flagpole'] = np.where((data['Day Close'] == 'Up') & 
                                             ((data['Close'] - data['Open']) >= (((((data['High'].shift(-1) - data['Low'].shift(-1)) +
