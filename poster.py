@@ -47,7 +47,7 @@ if __name__ == '__main__':
 
             # Find hammer candlestick if open - low > (close - open) * 2 
             # if the hammer's shadow is at least 2 times greater than the size of the real body
-            data['Hammer'] = np.where(data['Day Close'] == 'Up', data['Open'] - data['Low'] >= ((data['High'] - data['Open']) * 2), False)
+            data['Hammer'] = np.where(data['Day Close'] == 'Up', (data['Open'] - data['Low'] >= ((data['High'] - data['Open']) * 2)) & (data['High'] - data['Close'] <= ((data['Close'] - data['Open'])* .25)), False)
 
             data['Inverted Hammer'] = np.where(data['Day Close'] == 'Up', data['High'] - data['Close'] >= ((data['Close'] - data['Low']) * 2), False)
 
