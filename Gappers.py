@@ -43,6 +43,10 @@ access_token_expiration = decoded_content['expires_in']
 # Use the access token expiration to calculate the time it expires (local)
 access_token_renewal_date = datetime.datetime.fromtimestamp(time.time() + access_token_expiration)
 
+# Saves access token to be used by other programs within the 30 mins expiration timeframe
+with open('access.txt', 'w') as file:
+    json.dump(decoded_content, file, default=str)
+
 headers['Authorization'] = 'Bearer '+str(decoded_content['access_token'])
 
 
@@ -76,7 +80,8 @@ for chunk in chunks(stocks, 15):
     close_data.update(data)
 
 
-df = pd.DataFrame.from_dict(close_data, orient='index', columns=['symbol', 'openPrice', 'closePrice', '52WkHigh'])
+df = pd.DataFrame.from_dict(close_data, orient='index', columns=['symbol', 'openPrice', 'closePrice', '52WkHigh', 'totalVolume'])
+df.to_csv('open_prices.csv', index=False)
 df['Pct Change'] = (df['openPrice'] / df['closePrice']) - 1
 
 file_location = 'stock_data/'
@@ -123,16 +128,19 @@ content = []
 content.append("Stock gaps:\n")
 char_count = len(content[0])
 for t in df[['symbol', 'Pct Change']].values:
-    if abs(t[1]) > .025:
-            line = f"${t[0]} {t[1]:,.2%}\n"
-            content.append(line)
-            char_count += len(line)
-            if char_count >= 253:
-                twitter.update_status("".join(content))
-                content.clear()
-                char_count = 0
-                content.append("Stock gaps:\n")
+    if t[1] <= -1:
+        pass
+    elif abs(t[1]) > .03:
+        line = f"${t[0]} {t[1]:,.2%}\n"
+        content.append(line)
+        char_count += len(line)
+        if char_count >= 253:
+            twitter.update_status("".join(content))
+            content.clear()
+            char_count = 0
+            content.append("Stock gaps:\n")
 twitter.update_status("".join(content))
+# print("".join(content))
 
 
 # Breakout alerts
@@ -154,7 +162,9 @@ for t in df[['symbol', 'openPrice', '20 Day High', '50 Day High', '100 Day High'
         content.append(line)
         if char_count > 242:
             twitter.update_status("".join(content))
+            # print("".join(content))
             content.clear()
             char_count = 0
 if content:
     twitter.update_status("".join(content))
+    # print("".join(content))
