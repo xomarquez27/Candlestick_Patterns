@@ -5,9 +5,9 @@ cols = ['Symbol', 'Date', 'Open', 'High', 'Low', 'Close', 'Volume']
 location = './stock_data/'
 source = pd.read_csv('./eod.csv', names=cols, parse_dates=[1])
 
-# Allows for the issue with TD Ameritrade API using differennt symbols on the following tickers
-# to not affect files names as they are stored undet the key name
-source.replace({'Symbol':{'$DJI': 'DJI', '$SPX.X': 'SPX', '$VIX.X': 'VIX'}}, inplace=True)
+# Allows for the issue with TD Ameritrade API using different symbols on the following tickers
+# to not affect files names as they are stored under the key name
+source.replace({'Symbol':{'$DJI': 'DJI', '$SPX.X': 'SPX', '$VIX.X': 'VIX', 'COMP:GIDS'}}, inplace=True)
 
 for file in os.listdir('./stock_data/'):
 	if file.endswith('.csv'):
