@@ -146,50 +146,49 @@ if __name__ == '__main__':
                                                         (data['Volume'] < data['Volume'].shift(-1)) &
                                                         (data['Volume'].shift(-1) < data['Volume'].shift(-2)), True, False)
             # Volume is greater than 2.5 times average daily volume
-            data['Above Avg Volume'] = np.where(data['Volume'] >= ((data['Volume'].describe(percentiles=[.95])[5]), True, False)
+            data['Above Avg Volume'] = np.where(data['Volume'] >= ((data['Volume'].describe(percentiles=[.95])[5])), True, False)
             # Volume is lower than half the average daily volume
-            data['Below Avg Volume'] = np.where(data['Volume'] <= ((data['Volume'].describe(percentiles=[.05])[5])), True, False)
+            data['Below Avg Volume'] = np.where(data['Volume'] <= ((data['Volume'].describe(percentiles=[.05])[4])), True, False)
             
-            day_pattern = [data.columns[(data == True).iloc[0]]][0][0]
+            day_pattern = [data.columns[(data == True).iloc[0]]][0]
             content = []
             if day_pattern.empty:
                 pass
             else:
-                for i in day_pattern:
-                    # Dataframe with all days in which the pattern is True
-                    performance = pd.DataFrame(data.loc[data[i] == True])
-                    # Grab the close from 5 days after a pattern occurs and make result be the difference in price
-                    # from the close of the day of the pattern and that close 5 days after the pattern
-                    performance['Five Days'] = data.shift(5)[data[i] == True]['Close']
-                    performance['Result'] =  performance['Five Days'] - performance['Close']
-                    stats = performance['Result'].describe(percentiles=[.95])
-                    content.append(f'${file.split(".csv")[0]} {i}\n')
-                    content.append(f'Daily appearances since {data.iloc[-1,0].year}: {int(stats[0])}\n')
-                    content.append(f"Close 5 days later \u00B1:\n")
-                    content.append(f"Avg: {stats[1]:.2f}\n")
-                    content.append(f"SD: {stats[2]:.2f}\n")
-                    content.append(f"Worst: {stats[3]:.2f}\n")
-                    content.append(f"Best: {stats[6]:.2f}\n\n")
+                # Dataframe with all days in which the pattern is True
+                performance = pd.DataFrame(data.loc[data[day_pattern[0]] == True])
+                # Grab the close from 5 days after a pattern occurs and make result be the difference in price
+                # from the close of the day of the pattern and that close 5 days after the pattern
+                performance['Five Days'] = data.shift(5)[data[day_pattern[0]] == True]['Close']
+                performance['Result'] =  performance['Five Days'] - performance['Close']
+                stats = performance['Result'].describe(percentiles=[.95])
+                content.append(f'${file.split(".csv")[0]} {day_pattern[0]}\n')
+                content.append(f'Daily appearances since {data.iloc[-1,0].year}: {int(stats[0])}\n')
+                content.append(f"Close 5 days later \u00B1:\n")
+                content.append(f"Avg: {stats[1]:.2f}\n")
+                content.append(f"SD: {stats[2]:.2f}\n")
+                content.append(f"Worst: {stats[3]:.2f}\n")
+                content.append(f"Best: {stats[6]:.2f}\n\n")
 
-                    # Same concept as above but using 10 days after, then 30 days
-                    performance['Ten Days'] = data.shift(10)[data[i] == True]['Close']
-                    performance['Result'] = performance['Ten Days'] - performance['Close']
-                    stats = performance['Result'].describe(percentiles=[.95])
-                    content.append(f"10 days later:\n")
-                    content.append(f"Avg: {stats[1]:.2f}\n")
-                    content.append(f"SD: {stats[2]:.2f}\n")
-                    content.append(f"Worst: {stats[3]:.2f}\n")
-                    content.append(f"Best: {stats[6]:.2f}\n\n")
+                # Same concept as above but using 10 days after, then 30 days
+                performance['Ten Days'] = data.shift(10)[data[day_pattern[0]] == True]['Close']
+                performance['Result'] = performance['Ten Days'] - performance['Close']
+                stats = performance['Result'].describe(percentiles=[.95])
+                content.append(f"10 days later:\n")
+                content.append(f"Avg: {stats[1]:.2f}\n")
+                content.append(f"SD: {stats[2]:.2f}\n")
+                content.append(f"Worst: {stats[3]:.2f}\n")
+                content.append(f"Best: {stats[6]:.2f}\n\n")
 
-                    performance['30 Days'] = data.shift(30)[data[i] == True]['Close']
-                    performance['Result'] =  performance['30 Days'] - performance['Close']
-                    stats = performance['Result'].describe(percentiles=[.95])
-                    content.append(f"30 days later:\n")
-                    content.append(f"Avg: {stats[1]:.2f}\n")
-                    content.append(f"SD: {stats[2]:.2f}\n")
-                    content.append(f"Worst: {stats[3]:.2f}\n")
-                    content.append(f"Best: {stats[6]:.2f}")
+                performance['30 Days'] = data.shift(30)[data[day_pattern[0]] == True]['Close']
+                performance['Result'] =  performance['30 Days'] - performance['Close']
+                stats = performance['Result'].describe(percentiles=[.95])
+                content.append(f"30 days later:\n")
+                content.append(f"Avg: {stats[1]:.2f}\n")
+                content.append(f"SD: {stats[2]:.2f}\n")
+                content.append(f"Worst: {stats[3]:.2f}\n")
+                content.append(f"Best: {stats[6]:.2f}")
 
-                    # print("".join(content))
-                    twitter.update_status("".join(content))
-                    content.clear()
+                # print("".join(content))
+                twitter.update_status("".join(content))
+                content.clear()
