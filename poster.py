@@ -58,7 +58,7 @@ if __name__ == '__main__':
                                             (data['High'].shift(-3) - data['Low'].shift(-3)))) / 3) * 2.5)) &
                                             (data['Open'] >= data['Low'].shift(-1)), True, False)
 
-            data['Three White Soldiers'] = np.where(((data['Day Close'] == 'Up') & (data['Close'] > data['Close'].shift(-1)) & (data['Open'] > data['Open'].shift(-1)) & (data['Open'] < data['Close'].shift(-1)) & (data['Day Close'].shift(-1) == 'Up') & (data['Open'].shift(-1) > data['Open'].shift(-2)) & (data['Open'].shift(-1) < data['Close'].shift(-2))), True, False)
+            data['Three White Soldiers'] = np.where(((data['Day Close'] == 'Up') & (data['Close'] > data['Close'].shift(-1)) & (data['Open'] > data['Open'].shift(-1)) & (data['Open'] < data['Close'].shift(-1)) & (data['Day Close'].shift(-1) == 'Up') & (data['Open'].shift(-1) > data['Open'].shift(-2)) & (data['Open'].shift(-1) < data['Close'].shift(-2)) & (data['Close'].shift(-1) > data['Close'].shift(-2))), True, False)
 
             data['Piercing Line'] = np.where((data['Day Close'].shift(-1) == 'Down') & (data['Close'] > data['Close'].shift(-1) + 
                                             ((data['Open'].shift(-1) - data['Close'].shift(-1)) * 0.50)) & 
