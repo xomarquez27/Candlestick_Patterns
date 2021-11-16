@@ -109,8 +109,8 @@ if __name__ == '__main__':
                                             (data['Close'] > data['Open'].shift(-2)), True, False)
 
             data['Dark Cloud Cover'] = np.where((data['Day Close'] == 'Down') & (data['Day Close'].shift(-1) == 'Up') &
-                                                (data['Open'] > data['Close'].shift(-1)) & (data['Close'] >= (((data['Close'].shift(-1) -
-                                                data['Open'].shift(-1)) * .5) + data['Open'].shift(-1))) & (data['Close'] < data['Close'].shift(-1)), True, False)
+                                    (data['Open'] > data['Close'].shift(-1)) & (data['Close'] <= (((data['Close'].shift(-1) -
+                                    data['Open'].shift(-1)) * .5) + data['Open'].shift(-1))) & (data['Close'] < data['Close'].shift(-1)) & (data['Close'] >= data['Open'].shift(-1)), True, False)
 
             data['Bearish Harami'] = np.where((data['Day Close'] == 'Down') & (data['Day Close'].shift(-1) == 'Up') &
                                              (data['High'] < data['Close'].shift(-1)) & (data['Low'] > data['Open'].shift(-1)), True, False)
