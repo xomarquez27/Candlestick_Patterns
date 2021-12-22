@@ -146,9 +146,9 @@ if __name__ == '__main__':
                                                         (data['Volume'] < data['Volume'].shift(-1)) &
                                                         (data['Volume'].shift(-1) < data['Volume'].shift(-2)), True, False)
             # Volume is greater than 2.5 times average daily volume
-            data['Above Avg Volume'] = np.where(data['Volume'] >= ((data['Volume'].describe(percentiles=[.95])[5])), True, False)
+            data['Above Avg Volume'] = np.where(data['Volume'] > ((data['Volume'].describe(percentiles=[.95])[5])), True, False)
             # Volume is lower than half the average daily volume
-            data['Below Avg Volume'] = np.where(data['Volume'] <= ((data['Volume'].describe(percentiles=[.05])[4])), True, False)
+            data['Below Avg Volume'] = np.where(data['Volume'] < ((data['Volume'].describe(percentiles=[.05])[4])), True, False)
             
             day_pattern = [data.columns[(data == True).iloc[0]]][0]
             content = []
